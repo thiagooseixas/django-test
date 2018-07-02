@@ -1,6 +1,6 @@
-# django-test
+# Django-test
 
-Test in Django
+Test Django
 
 ## Getting Started
 
