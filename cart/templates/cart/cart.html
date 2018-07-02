@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-{% load static %}
 {% block content %}
 
 <div class="row mt-5">
@@ -10,7 +9,6 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Price</th>
@@ -20,11 +18,10 @@
                 <tbody>
                 {% for product in products %}
                 <tr>
-                    <th scope="row">{{product.id}}</th>
                     <td>{{ product.name }}</td>
                     <td>
                         <input type="number" class="form-control quantity" id="quantity_{{product.id}}" min="1"
-                               max="{{product.quantity}}" required>
+                               max="{{product.quantity}}" value="1" required>
                     </td>
                     <td>$ {% load humanize %}
                         {{ product.price|floatformat:2|intcomma }}
@@ -45,7 +42,6 @@
                     <td></td>
                     <td></td>
                     <td>Total: $ <span>0000</span></td>
-                    <td></td>
                     <td><a href="{% url 'cart:checkout' %}" class="btn btn-primary">CONTINUE</a></td>
                 </tr>
                 {% endif %}
@@ -54,20 +50,5 @@
         </div>
     </div>
 </div>
-
-<script src="{% static 'js/cart/cart.js' %}"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-      $(".table").on('click','tr',function(e){
-        e.preventDefault();
-        var id = $('.quantity');
-        });
-    });
-
-</script>
 
 {% endblock %}

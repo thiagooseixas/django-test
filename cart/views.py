@@ -5,7 +5,6 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from product.models import Product
 from cart.models import OrderItem
-from django.utils import timezone
 from .forms import PostForm
 
 
@@ -33,7 +32,7 @@ def view_cart(request):
 
 
 def delete_item(request, **kwargs):
-    item = Product.objects.get(id=kwargs.get('item_id', ''))
+    item = OrderItem.objects.get(id=kwargs.get('item_id', ''))
 
     if item:
         item.delete()
@@ -43,11 +42,13 @@ def delete_item(request, **kwargs):
 
 def checkout(request):
     form = PostForm(request.POST)
+
     if form.is_valid():
         OrderItem.objects.all().delete()
         form.save()
-        #messages.success(request, "Save Success.")
+        # messages.success(request, "Save Success.")
         return render(request, 'payment/info.html', {})
+
     return render(request, 'checkout/checkout.html', {})
 
 
