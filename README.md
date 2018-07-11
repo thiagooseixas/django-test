@@ -15,6 +15,10 @@ Mini Project using:
 ### Running
 
 ```
+docker-compose build
+```
+
+```
 docker-compose up
 ```
 enjoy
