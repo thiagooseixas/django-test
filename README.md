@@ -1,6 +1,6 @@
 # Django-test
 
-Test Django
+Simple Cart Using Django Framework
 
 ## Getting Started
 
